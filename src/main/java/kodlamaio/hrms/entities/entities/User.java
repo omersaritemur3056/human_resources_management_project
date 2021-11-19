@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +29,10 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="email",unique = true)
+	@Email
+	@Pattern(regexp = "^([\\p{L}-_\\.]+){1,64}@([\\p{L}-_\\.]+){2,255}.[a-z]{2,}$")
+	@Column(name="email", nullable = false)
+	@NotBlank
 	private String email;
 	
 	@Column(name="password")

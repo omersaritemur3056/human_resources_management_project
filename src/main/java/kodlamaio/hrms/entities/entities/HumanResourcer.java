@@ -2,10 +2,9 @@ package kodlamaio.hrms.entities.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,24 +16,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Table(name="human_resourcer")
+@Table(name="human_resourcers")
+@PrimaryKeyJoinColumn(name="human_resourcer_id", referencedColumnName = "id")
 
 public class HumanResourcer extends User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="human_resourcer_id")
-	private int id;
-	
+	@NotNull
 	@Column(name="first_name")
 	private String firstName;
 	
+	@NotNull
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="nationality_id", unique = true, length = 11)
-	private String nationalityId;
-	
-	@Column(name="birth_of_year")
-	private int birthOfYear;
 }

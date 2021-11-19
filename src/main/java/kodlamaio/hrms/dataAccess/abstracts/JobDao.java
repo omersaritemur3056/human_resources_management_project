@@ -6,4 +6,5 @@ import kodlamaio.hrms.entities.entities.Job;
 
 public interface JobDao extends JpaRepository<Job, Integer> {
 
+	Job findByTitles(String titles);
 }
