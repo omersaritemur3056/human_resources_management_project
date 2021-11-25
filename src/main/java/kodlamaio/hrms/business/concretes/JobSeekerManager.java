@@ -2,7 +2,6 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 
-import org.hibernate.boot.registry.BootstrapServiceRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,14 +68,16 @@ public class JobSeekerManager implements JobSeekerService {
 			return new ErrorResult("failed");
 		}
 		
-		/*Result checkedPerson;   //merniste şimdilik patladık...
 		
-		checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
-		
-		
-		if(checkedPerson != null) {
-			return new ErrorResult();
-		}*/
+		/*
+		 * Result checkedPerson; //merniste şimdilik patladık...
+		 * 
+		 * checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
+		 * 
+		 * 
+		 * if(checkedPerson != null) { return new ErrorResult(); }
+		 */
+		 
 		
 		if(!this.emailVerificationService.verifyEmail(jobSeeker.getEmail()).isSuccess()) {
 			return new ErrorResult("Check your email please");

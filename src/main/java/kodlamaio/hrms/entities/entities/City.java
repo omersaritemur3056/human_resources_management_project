@@ -12,33 +12,37 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Table(name="job_titles")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisments"})
-public class Job {
+@Entity
+@Table(name = "cities")
+@CrossOrigin
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employers","cities","job","job_advertisments","jobAdvertisments"})
+public class City {
 
 	@Id
+	@Column(name = "city_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="job_id")
 	private int id;
 	
-	@Column(name="titles")
-	private String titles;
+	@Column(name = "city_name")
+	private String cityName;
+	
+	@Column(name = "country_name")
+	private String countryName;
 	
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "job", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore(value = true)
+	@OneToMany(mappedBy = "city", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<JobAdvertisment> jobAdvertisments;
 }
