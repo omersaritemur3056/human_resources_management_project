@@ -3,36 +3,39 @@ package kodlamaio.hrms.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import kodlamaio.hrms.business.abstracts.JobService;
+import kodlamaio.hrms.business.abstracts.CityService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.entities.Job;
+import kodlamaio.hrms.entities.entities.City;
 
 @RestController
-@RequestMapping("/api/job_titles")
-public class JobController {
-	
-	private JobService jobService;
+@CrossOrigin
+@RequestMapping("/api/cities")
+public class CitiesController {
+
+	private CityService cityService;
 
 	@Autowired
-	public JobController(JobService jobService) {
+	public CitiesController(CityService cityService) {
 		super();
-		this.jobService = jobService;
+		this.cityService = cityService;
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Job>> getAll() {
-		return this.jobService.getAll();
+	public DataResult<List<City>> getAll(){
+		return this.cityService.getAll();
 	}
 	
+	
 	@PostMapping("/add")
-	public Result add(@RequestBody Job job) {
-		return this.jobService.add(job);
+	public Result add(@RequestBody City city) {
+		return this.cityService.add(city);
 	}
 }

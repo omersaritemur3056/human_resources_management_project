@@ -1,5 +1,7 @@
 package kodlamaio.hrms.core.utilities.adapters.concretes;
 
+import java.util.Locale;
+
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.core.utilities.adapters.abstracts.MernisCheckService;
@@ -18,8 +20,8 @@ public class MernisCheckManager implements MernisCheckService {
 		KPSPublicSoapProxy kpsPublicSoapProxy = new KPSPublicSoapProxy();
 		
 		boolean result = kpsPublicSoapProxy.TCKimlikNoDogrula(Long.parseLong(jobSeeker.getNationalityId()),
-				jobSeeker.getFirstName().toUpperCase(),
-				jobSeeker.getLastName().toUpperCase(),
+				jobSeeker.getFirstName().toUpperCase(new Locale("tr","TR")),
+				jobSeeker.getLastName().toUpperCase(new Locale("tr","TR")),
 				Integer.parseInt(jobSeeker.getBirthOfYear()));
 		
 		if(!result) {

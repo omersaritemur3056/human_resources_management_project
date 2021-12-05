@@ -41,16 +41,20 @@ public class JobAdvertismentManager implements JobAdvertismentService {
 	public Result add(JobAdvertismentDto jobAdvertismentDto) {
 		
 		JobAdvertisment jobAdvertisment = new JobAdvertisment();
-		jobAdvertisment.setEmployer(this.employerDao.getEmployerByCompanyName(jobAdvertismentDto.getCompanyName()));
-		jobAdvertisment.setActive(jobAdvertisment.isActive());
+		
+		jobAdvertisment.setActive(jobAdvertisment.isActive()?true:false);  //buna true parametresi geçilebilir ancak swagger kısmında false denemek için boş bıraktım. Bu sayede false atayabildim.
         jobAdvertisment.setMinSalary(jobAdvertismentDto.getMinSalary());
         jobAdvertisment.setMaxSalary(jobAdvertismentDto.getMaxSalary());
         jobAdvertisment.setDescription(jobAdvertismentDto.getDescription());
         jobAdvertisment.setOpenPositions(jobAdvertismentDto.getOpenPositions());
         jobAdvertisment.setApplicationDeadline(jobAdvertismentDto.getApplicationDeadline());
         jobAdvertisment.setReleaseDateTime(jobAdvertismentDto.getReleaseDateTime());
-        jobAdvertisment.setCity(this.cityDao.getCityById(jobAdvertismentDto.getCityId()));
-        jobAdvertisment.setEmployer(this.employerDao.getEmployerById(jobAdvertismentDto.getEmployerId()));
+        
+        jobAdvertisment.setCity(this.cityDao.findCityById(jobAdvertismentDto.getCityId()));
+        jobAdvertisment.setCity(this.cityDao.findCityByCityName(jobAdvertismentDto.getCityName()));
+        jobAdvertisment.setEmployer(this.employerDao.findEmployerById(jobAdvertismentDto.getEmployerId())); //ileride yazılacak manipülasyonlar id üzerinde gerçekleşir.(update, delete gibi)
+        jobAdvertisment.setEmployer(this.employerDao.findEmployerByCompanyName(jobAdvertismentDto.getCompanyName()));
+        
 		this.jobAdvertismentDao.save(jobAdvertisment);
 		return new SuccessResult("Job advertisment added");
 	}
@@ -63,17 +67,21 @@ public class JobAdvertismentManager implements JobAdvertismentService {
 //	}
 	
 //	@Override
-//	public DataResult<List<JobAdvertisment>> getByCompanyNameAndIsActive(String companyName) {
-//		return new SuccessDataResult<List<JobAdvertisment>>(this.jobAdvertismentDao.getByCompanyNameAndIsActive(companyName),"Listed the advertisment");
+//	public DataResult<List<JobAdvertisment>> findByCompanyNameAndIsActive(String companyName) {
+//		return new SuccessDataResult<List<JobAdvertisment>>(this.jobAdvertismentDao.findByCompanyNameAndIsActive(companyName),"Listed the advertisment");
 //	}
 	
 //	@Override
-//	public DataResult<List<JobAdvertisment>> getAdvertismentAfter(Date applicationDeadline) {
+//	public DataResult<List<JobAdvertisment>> findAdvertismentAfter(Date applicationDeadline) {
 //		return new SuccessDataResult<List<JobAdvertisment>> (this.jobAdvertismentDao.findAllWithApplicationDeadlineAfter(applicationDeadline),  "Listed Job advertisment ordered by released datetime");
 //	}
 	
+	
+	
+	
+	
 	@Override
-    public DataResult<List<JobAdvertisment>> getAllActives() {
+    public DataResult<List<JobAdvertisment>> findAllActives() {
         return new SuccessDataResult<>(this.jobAdvertismentDao.findAllByIsActiveTrue());
     }
 

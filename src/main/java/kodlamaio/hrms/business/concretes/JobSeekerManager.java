@@ -69,21 +69,21 @@ public class JobSeekerManager implements JobSeekerService {
 		}
 		
 		
-		/*
-		 * Result checkedPerson; //merniste şimdilik patladık...
-		 * 
-		 * checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
-		 * 
-		 * 
-		 * if(checkedPerson != null) { return new ErrorResult(); }
-		 */
+		
+//		  Result checkedPerson; //merniste swagger tarafında patladık...
+//		  
+//		  checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
+//		  
+//		  
+//		  if(checkedPerson != null) { return new ErrorResult(); }
+		 
 		 
 		
 		if(!this.emailVerificationService.verifyEmail(jobSeeker.getEmail()).isSuccess()) {
 			return new ErrorResult("Check your email please");
 		}
 		
-		this.jobSeekerDao.save(jobSeeker);
+		this.jobSeekerDao.saveAndFlush(jobSeeker);
 		return new SuccessResult("Job seeker saved");
 	}
 }

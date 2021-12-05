@@ -10,31 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import kodlamaio.hrms.business.abstracts.JobSeekerService;
+import kodlamaio.hrms.business.abstracts.LanguageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.entities.JobSeeker;
+import kodlamaio.hrms.entities.entities.Language;
 
-@CrossOrigin
 @RestController
-@RequestMapping("/api/job_seekers")
-public class JobSeekerController {
-	
-	private JobSeekerService jobSeekerService;
+@CrossOrigin
+@RequestMapping(value = "/api/languages")
+public class LanguagesController {
+
+	private LanguageService languageService;
 
 	@Autowired
-	public JobSeekerController(JobSeekerService jobSeekerService) {
+	public LanguagesController(LanguageService languageService) {
 		super();
-		this.jobSeekerService = jobSeekerService;
+		this.languageService = languageService;
 	}
 	
-	@GetMapping("/getall")
-	public DataResult<List<JobSeeker>> getAll(){
-		return this.jobSeekerService.getAll();
+	@GetMapping(value = "/getall")
+	public DataResult<List<Language>> getAll(){
+		return this.languageService.getAll();
 	}
 	
-	@PostMapping("/add")
-	public Result add(@RequestBody JobSeeker jobSeeker) throws Exception {
-		return this.jobSeekerService.add(jobSeeker) ;
+	@PostMapping(value = "/add")
+	public Result add(@RequestBody Language language) {
+		return this.languageService.add(language);
 	}
+	
+	
+	
 }

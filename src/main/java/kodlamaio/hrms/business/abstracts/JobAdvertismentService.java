@@ -1,6 +1,5 @@
 package kodlamaio.hrms.business.abstracts;
 
-import java.util.Date;
 import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -12,7 +11,7 @@ public interface JobAdvertismentService {
 
 	DataResult<List<JobAdvertisment>> getAll();
 	
-	Result add(JobAdvertismentDto jobAdvertismentDto);
+	Result add(JobAdvertismentDto jobAdvertismentDto); //buna bir query gerekebilir
 	
 	//Result add(JobAdvertisment jobAdvertisment);
 	
@@ -20,7 +19,7 @@ public interface JobAdvertismentService {
 	
 	//DataResult<List<JobAdvertisment>> getAdvertismentAfter(Date applicationDeadline);
 	
-	DataResult<List<JobAdvertisment>> getAllActives();
+	DataResult<List<JobAdvertisment>> findAllActives();
 	
 	DataResult<List<JobAdvertisment>> findAllCompanyNameAndIsActive(String companyName);
 	

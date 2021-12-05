@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import kodlamaio.hrms.business.abstracts.HumanResourcerService;
+import kodlamaio.hrms.business.abstracts.UserService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.entities.HumanResourcer;
+import kodlamaio.hrms.entities.entities.User;
 
+@RequestMapping("/api/users")
 @RestController
-@RequestMapping("/api/human_resourcers")
-public class HumanResourcerController {
-	
-	private HumanResourcerService humanResourcerService;
+public class UsersController { //playground için yazıldı
+
+	private UserService userService;
 
 	@Autowired
-	public HumanResourcerController(HumanResourcerService humanResourcerService) {
+	public UsersController(UserService userService) {
 		super();
-		this.humanResourcerService = humanResourcerService;
+		this.userService = userService;
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<HumanResourcer>> getAll(){
-		return this.humanResourcerService.getAll();
+	public DataResult<List<User>> getAll(){
+		return this.userService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody HumanResourcer humanResourcer) {
-		return this.humanResourcerService.add(humanResourcer);
+	public Result add(@RequestBody User user) {
+		return this.userService.add(user);
 	}
 }

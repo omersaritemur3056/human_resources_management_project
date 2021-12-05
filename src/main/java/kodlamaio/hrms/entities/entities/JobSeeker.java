@@ -1,7 +1,10 @@
 package kodlamaio.hrms.entities.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -45,4 +48,7 @@ public class JobSeeker extends User {
 	@Column(name="birth_of_year")
 	private String birthOfYear;
 	
+
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<Resume> resumes;
 }

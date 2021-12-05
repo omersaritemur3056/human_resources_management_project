@@ -18,7 +18,7 @@ public class JobAdvertismentDto {
     private int cityId;
     private int employerId;
     private String description;
-    private String city;
+    private String cityName;
     private int minSalary;
     private int maxSalary;
     private String companyName;

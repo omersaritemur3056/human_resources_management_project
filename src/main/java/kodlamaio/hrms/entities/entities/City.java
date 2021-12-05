@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
@@ -26,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "cities")
-@CrossOrigin
+@EqualsAndHashCode
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","employers","cities","job","job_advertisments","jobAdvertisments"})
 public class City {
 
@@ -42,6 +44,7 @@ public class City {
 	private String countryName;
 	
 
+	//@JsonManagedReference
 	@JsonIgnore(value = true)
 	@OneToMany(mappedBy = "city", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<JobAdvertisment> jobAdvertisments;

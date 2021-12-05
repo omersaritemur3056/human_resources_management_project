@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -56,19 +57,24 @@ public class JobAdvertisment {
 	private int maxSalary;
 	
 	
+	@NotNull
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "city_id", insertable=false, updatable=false)
+	@JoinColumn(name = "city_id")
 	private City city;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employer_id", insertable=false, updatable=false)
-	private Employer employer;
-	
+	@NotNull
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "job_titles_id", insertable=false, updatable=false)
+	@JoinColumn(name = "employer_id")
+	private Employer employer;
+	
+	
+	@NotNull
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "job_titles_id")
 	private Job job;
 
 }

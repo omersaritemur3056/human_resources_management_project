@@ -10,6 +10,6 @@ public interface EmployerDao extends JpaRepository<Employer, Integer> {
 	Employer findByEmailIgnoreCase(String email);
 	Employer findByWebSiteIgnoreCase(String webSite);
 	
-	Employer getEmployerById(int id);
-	Employer getEmployerByCompanyName(String companyName);
+	Employer findEmployerById(int id);
+	Employer findEmployerByCompanyName(String companyName);
 }

@@ -18,12 +18,12 @@ import kodlamaio.hrms.entities.entities.JobAdvertisment;
 
 @RestController
 @RequestMapping("/api/job_advertisments")
-public class JobAdvertismentController {
+public class JobAdvertismentsController {
 
 	private JobAdvertismentService jobAdvertismentService;
 
 	@Autowired
-	public JobAdvertismentController(JobAdvertismentService jobAdvertismentService) {
+	public JobAdvertismentsController(JobAdvertismentService jobAdvertismentService) {
 		super();
 		this.jobAdvertismentService = jobAdvertismentService;
 	}
@@ -46,20 +46,20 @@ public class JobAdvertismentController {
 
 	
 //	@GetMapping("/getCompanyNameAndIsActive")
-//	public DataResult<List<JobAdvertisment>> getByCompanyNameAndIsActive(@RequestParam("companyName") String companyName)
+//	public DataResult<List<JobAdvertisment>> findByCompanyNameAndIsActive(@RequestParam("companyName") String companyName)
 //	{
-//		return this.jobAdvertismentService.getByCompanyNameAndIsActive(companyName);
+//		return this.jobAdvertismentService.findByCompanyNameAndIsActive(companyName);
 //	}
 	
 //	@GetMapping("/getActiveAdvertismentAfter")
-//	public DataResult<List<JobAdvertisment>> getActiveAdvertismentAfter(@RequestParam("applicationDeadline") @DateTimeFormat(pattern = "yyyy-MM-dd") Date applicationDeadline) {
+//	public DataResult<List<JobAdvertisment>> findActiveAdvertismentAfter(@RequestParam("applicationDeadline") @DateTimeFormat(pattern = "yyyy-MM-dd") Date applicationDeadline) {
 //				 
-//		return this.jobAdvertismentService.getAdvertismentAfter(applicationDeadline);
+//		return this.jobAdvertismentService.findAdvertismentAfter(applicationDeadline);
 //	}
 	
 	@GetMapping("/getAllActives")
     DataResult<List<JobAdvertisment>> getAllActives(){
-        return this.jobAdvertismentService.getAllActives();
+        return this.jobAdvertismentService.findAllActives();
     }
 	
 	@GetMapping("/getAllActivesByCompanyName")

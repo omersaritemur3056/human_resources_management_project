@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,11 +33,17 @@ public class Job {
 	@Column(name="job_id")
 	private int id;
 	
-	@Column(name="titles")
+	@Column(name="titles", unique = true)
 	private String titles;
+	
 	
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "job", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<JobAdvertisment> jobAdvertisments;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "job")
+	private List<JobExperince> jobExperinces;
 }
