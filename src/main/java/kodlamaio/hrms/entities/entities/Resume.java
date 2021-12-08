@@ -41,11 +41,11 @@ public class Resume {
 	private String coverLetter;
 	
 	
-	@JsonIgnore
-	@NotNull // bu anotasyon nedense one to one kısmında çalışmasında etkili oldu.
-	@OneToOne
-	@JoinColumn(name = "job_seeker_id")
-	private JobSeeker jobSeeker;
+//	@JsonIgnore
+//	@NotNull // bu anotasyon nedense one to one kısmında çalışmasında etkili oldu.
+//	@OneToOne
+//	@JoinColumn(name = "job_seeker_id")
+//	private JobSeeker jobSeeker;
 	
 	
 	@JsonIgnore

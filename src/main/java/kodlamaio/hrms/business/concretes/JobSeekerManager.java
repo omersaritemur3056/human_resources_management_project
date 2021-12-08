@@ -70,12 +70,18 @@ public class JobSeekerManager implements JobSeekerService {
 		
 		
 		
-//		  Result checkedPerson; //merniste swagger tarafında patladık...
-//		  
-//		  checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
-//		  
-//		  
-//		  if(checkedPerson != null) { return new ErrorResult(); }
+		  Result checkedPerson; //merniste swagger tarafında patladık...
+		  
+		  checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
+		  
+		  
+		  if(!this.mernisCheckService.checkIfRealPerson(jobSeeker).isSuccess()) {
+			  
+			  return new ErrorResult("Person not a valid");
+			  
+			  //mernis doğrulaması tamamlanmıştır.
+		  }
+		  
 		 
 		 
 		

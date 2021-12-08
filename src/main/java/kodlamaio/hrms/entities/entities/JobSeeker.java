@@ -49,6 +49,6 @@ public class JobSeeker extends User {
 	private String birthOfYear;
 	
 
-	@OneToMany(mappedBy = "jobSeeker")
-	private List<Resume> resumes;
+//	@OneToMany(mappedBy = "jobSeeker")
+//	private List<Resume> resumes;
 }
