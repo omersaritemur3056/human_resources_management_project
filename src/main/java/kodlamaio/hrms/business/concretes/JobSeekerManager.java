@@ -70,7 +70,7 @@ public class JobSeekerManager implements JobSeekerService {
 		
 		
 		
-		  Result checkedPerson; //merniste swagger tarafında patladık...
+		  Result checkedPerson; 
 		  
 		  checkedPerson = mernisCheckService.checkIfRealPerson(jobSeeker);
 		  
